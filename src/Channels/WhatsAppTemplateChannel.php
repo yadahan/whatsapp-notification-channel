@@ -68,7 +68,7 @@ class WhatsAppTemplateChannel
         $message = $notification->toWhatsApp($notifiable);
 
         $payload = array_filter([
-            'apiKey' => $this->apiKey,
+            'apiKey' => $message->apiKey ?: $this->apiKey,
             'from' => $message->number ?: $this->from,
             'to' => $to,
             'name' => $message->name,
@@ -83,7 +83,7 @@ class WhatsAppTemplateChannel
             'websiteVariable' => $message->websiteVariable,
         ]);
 
-        return $this->http->post('https://api.99digital.co.il/whatsapp/v2/sendTemplate', [
+        return $this->http->post($this->url, [
             'headers' => ['Content-Type' => 'application/json'],
             'json' => $payload,
         ]);

@@ -5,6 +5,13 @@ namespace Yadahan\WhatsAppNotificationChannel\Messages;
 class WhatsAppMessage
 {
     /**
+     * The api key to use the message.
+     *
+     * @var string
+     */
+    public $apiKey;
+
+    /**
      * The phone number to send the message from.
      *
      * @var string
@@ -52,6 +59,19 @@ class WhatsAppMessage
      * @var string|null
      */
     public $websiteVariable;
+
+    /**
+     * Set the api key.
+     *
+     * @param  string  $apiKey
+     * @return $this
+     */
+    public function key($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
 
     /**
      * Set a custom from number for the WhatsApp message.
